@@ -10,8 +10,10 @@ CREATE TABLE `users` (
 CREATE TABLE `posts` (
   `id` integer PRIMARY KEY AUTO_INCREMENT,
   `user_id` integer,
+  `guid` integer,
+  `mini_guid` integer,
   `posted_date` datetime,
-  `desctiption` longtext
+  `description` longtext
 );
 
 CREATE TABLE `comments` (

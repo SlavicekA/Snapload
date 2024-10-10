@@ -1,18 +1,24 @@
 <?php
 
-class db_context{
-    const dsn = "mysql:host=localhost;dbname=snapload";
-    const dbusername = "root";
-    const dbpassword = "";
+class DbContext{
+    const DSN = "mysql:host=localhost;dbname=snapload";
+    const DBUSERNAME = "root";
+    const DBPASSWORD = "";
     private static $pdo;
 
-    public static function connect(){
-        self::$pdo = new PDO(self::dsn,self::dbusername,self::dbpassword);
+    public static function __construct(){
+        self::$pdo = new PDO(self::DSN,self::DBUSERNAME,self::DBPASSWORD);
         self::$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 
-    public static function select ($columns ,$tablename){
-        $query = "SELECT $columns FROM $tablename";
+    public static function select ($columns = [] ,$tableName, $conditions = []){
+        $columnsString = implode(",",$columns);
+
+        $query = "SELECT $columnsString FROM $tableName";
+
+        if(!empty($conditions)){
+            $query .= " WHERE " . implode(" AND ", $conditions);
+        }
 
         $stmt = self::$pdo->prepare($query);
         $stmt->execute();
@@ -29,7 +35,7 @@ class db_context{
         $stmt = self::$pdo->prepare($query);
 
         foreach($data as $column => $value){
-            $stmt->bindParam(":" .  $column, $value);
+            $stmt->bindValue(":" .  $column, $value);
         }
 
         $stmt->execute();
