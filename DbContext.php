@@ -30,7 +30,7 @@ class DbContext{
         $columns = implode(", ", array_keys($data));
         $placeholders = ":" . implode(", :", array_keys($data));
 
-        $query = "INSERT INTO ($columns) VALUES ($placeholders)";
+        $query = "INSERT INTO $table ($columns) VALUES ($placeholders)";
 
         $stmt = self::$pdo->prepare($query);
 

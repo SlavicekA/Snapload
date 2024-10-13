@@ -1,14 +1,14 @@
 <?php
 
 namespace App\Repositories;
-use \db_context;
-use \Models\user;
+use \DbContext;
+use \Models\User;
 
 class userRepo{
     private $context;
 
     public function __construct(){
-        $this->context = new db_context();
+        $this->context = new DbContext();
     }
 
     public function selectAll(){
@@ -16,7 +16,7 @@ class userRepo{
 
         $users = [];
         foreach($results as $result){
-             $users[] = new $user($result["id"], $result["username"], $result["avatarGuid"], $result["email"], $result["role"]);
+             $users[] = new User($result["id"], $result["username"], $result["avatarGuid"], $result["email"], $result["role"]);
         }
 
         return $users;
@@ -25,7 +25,9 @@ class userRepo{
     public function selectById($id){
         $result = $this->context::select(["x"], "users", ["id=" . $id])[0];
 
-        $user = new user($result["id"], $result["username"], $result["avatarGuid"], $result["email"], $result["role"]);
+        $user = new User($result["id"], $result["username"], $result["avatarGuid"], $result["email"], $result["role"]);
+
+        return $user;
     }
 
     public function insert($user){
@@ -34,7 +36,7 @@ class userRepo{
             "username" => $user->getUsername(),
             "avatarGuid" => $user->getAvatarGuid(),
             "email" => $user->getEmail(),
-            "role" => $iser->getRole(),
+            "role" => $user->getRole(),
         ));
 
     }
