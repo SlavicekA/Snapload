@@ -1,0 +1,73 @@
+@import url("../Public/shared.css");
+
+header{
+    display: grid;
+    grid-template-columns: 12.5% 75% 12.5%;
+}
+
+header > *{
+    justify-self: stretch;
+    align-self: stretch;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#logo{
+    width: 60%;
+}
+
+#log_in{
+    width: 100%;
+    height: 100%;
+    align-content: center;
+    text-align: center;
+    font-size: clamp(1.5rem, 2vw, 2.8rem);
+    font-weight: 500;
+    color: var(--primary-text-color);
+    text-decoration-color: var(--primary-color);
+    text-decoration-thickness: 3px;
+}
+
+
+
+#search_form{
+    margin: 0;
+    display: flex;
+    box-shadow: 0 9px 13.8px 0 #BABABA;
+    width: 35%;
+    height: 40%;
+    background-color: var(--background-color-taskbar);
+    border: solid var(--background-color-taskbar);
+    border-radius: 1vh;
+    padding-right: 0.5vw;
+    padding-left: 0.5vw;
+}
+
+#search_form > *{
+    background-color: transparent;
+    border: none;
+}
+
+#search_input{
+    flex: auto;
+}
+
+
+#search_button img{
+    width: clamp(1.5rem, 1vw, 2.8rem);
+}
+
+#search_input::placeholder,#search_input{
+    font-size: clamp(1.5rem, 2vw, 2.8rem);
+}
+
+main{
+    background-color: var(--background-color-secondary);
+    width: 75vw;
+    height: 87vh;
+    flex: auto;
+    display: flex;
+}
+
+
