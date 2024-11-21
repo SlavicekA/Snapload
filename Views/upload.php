@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Snapload | Sign-up</title>
+    <title>Snapload | Upload</title>
     <link rel="icon" type="image/x-icon" href="../Common/Images/logo_small.svg">
     <link rel="stylesheet" href="../Common/Styles/Shared/form.css">
 </head>
