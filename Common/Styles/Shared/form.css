@@ -1,0 +1,97 @@
+@import url("shared.css");
+
+body{
+    overflow: auto;
+}
+
+header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wrapper{
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+p {
+    text-align: center;
+}
+
+header img{
+    height: 55%;
+}
+
+main{
+    width: 30rem;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--background-color-secondary);
+    border-radius: 0.5rem;
+}
+
+section, form{
+    display: flex;
+    flex-direction: column;
+}
+
+form{
+    gap: 2rem;
+}
+
+#title{
+    font-size: 2.5rem;
+    text-decoration: underline;
+    text-decoration-color: var(--primary-color);
+    text-decoration-thickness: 3px;
+}
+
+#inputs{
+    gap: 2rem;
+}
+
+.any_input,.file_input{
+    padding-left: 3rem;
+    padding-right: 3rem;
+}
+
+
+
+input, .uploaded_file{
+    height: 3rem;
+    border-radius: 0.5rem;
+}
+
+label #tag,.any_input label, input, .uploaded_file{
+    padding-left: 1rem;
+}
+
+.uploaded_file{
+    display: flex;
+    align-items: center;
+}
+
+input::placeholder, label, input, #buttons p, .uploaded_file{
+    font-size: 1.2rem;
+}
+
+#buttons{
+    padding-top: 2vh;
+    align-items: center;
+}
+
+
+
+#buttons p{
+    width: 100%;
+}
+
+#buttons p,#buttons p a{
+    color: var(--secondary-text-color);
+}
+
+#buttons img{
+    height: 0.6rem;
+}

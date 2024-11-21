@@ -1,0 +1,146 @@
+@import url("shared.css");
+
+
+header{
+    display: grid;
+    grid-template-columns: 15% 20% 30% 20% 15%;
+    grid-template-areas: "logo . search_form . user_card";
+}
+
+header > *{
+    justify-self: stretch;
+    align-self: stretch;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+#logo{
+    grid-area: logo;
+}
+
+#logo img{
+    width: 60%;
+}
+
+#user_card{
+    grid-area: user_card;
+}
+
+#log_in, #user_card p{
+    align-content: center;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 500;
+    color: var(--primary-text-color);
+    text-decoration-color: var(--primary-color);
+    text-decoration-thickness: 3px;
+}
+
+#search_form{
+    grid-area: search_form;
+}
+
+#search_form form{
+    margin: 0;
+    display: flex;
+    box-shadow: 0 9px 13.8px 0 #BABABA;
+    width: 100%;
+    height: 40%;
+    background-color: var(--background-color-taskbar);
+    border: solid var(--background-color-taskbar);
+    border-radius: 1vh;
+    padding-right: 0.5vw;
+    padding-left: 0.5vw;
+}
+
+#search_form form > *{
+    background-color: transparent;
+    border: none;
+}
+
+#search_button img{
+    width: 1.5rem;
+}
+
+#search_input::placeholder,#search_input{
+    font-size: 2rem;
+    color: var(--secondary-text-color);
+}
+
+#search_button{
+}
+
+#search_input{
+    flex: auto;
+    width: 80%;
+    color: var(--primary-text-color);
+}
+
+#actions_main,#actions_secondary{
+    display: flex;
+    gap: 2rem;
+    width: fit-content;
+}
+
+#actions_main{
+    grid-area: actions_main;
+    padding-right: 2rem;
+    margin-left: auto;
+}
+
+#actions_main a{
+    width: 100%;
+    align-content: center;
+    text-align: right;
+    font-size: 2rem;
+    color: var(--primary-text-color);
+    text-decoration:none;
+    white-space: nowrap;
+}
+
+#actions_main a:hover{
+    text-decoration: underline var(--primary-text-color);
+}
+
+#actions_secondary{
+    grid-area: actions_secondary;
+    padding-left: 2rem;
+    margin-right: auto;
+}
+
+#actions_secondary a img{
+    width: 1.5rem;
+}
+
+.logged_header{
+    display: grid;
+    grid-template-columns: 15% 22.5% 25% 22.5% 15%;
+    grid-template-areas: "logo actions_main search_form actions_secondary user_card";
+}
+
+#user_card{
+    grid-area: user_card;
+    display: flex;
+    justify-content: center;
+    gap: 0.5vw;
+}
+#user_card > img{
+    height: 3rem;
+    border-radius: 100%;
+}
+#user_card p{
+    text-align: left;
+}
+
+
+main{
+    background-color: var(--background-color-secondary);
+    width: 70vw;
+    flex: 1;
+    display: flex;
+    overflow-y: auto;
+}
+
+

@@ -12,7 +12,7 @@ class userRepo{
     }
 
     public function selectAll(){
-        $results = $this->context::select(["x"], "users");
+        $results = $this->context::select(["*"], "users");
 
         $users = [];
         foreach($results as $result){
@@ -23,7 +23,7 @@ class userRepo{
     }
 
     public function selectById($id){
-        $result = $this->context::select(["x"], "users", ["id=" . $id])[0];
+        $result = $this->context::select(["*"], "users", ["id=" . $id])[0];
 
         $user = new User($result["id"], $result["username"], $result["avatarGuid"], $result["email"], $result["role"]);
 

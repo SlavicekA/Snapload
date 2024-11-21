@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Snapload | Sign-up</title>
+    <link rel="icon" type="image/x-icon" href="../Common/Images/logo_small.svg">
+    <link rel="stylesheet" href="../Common/Styles/Shared/form.css">
+</head>
+<body>
+<header>
+    <img src="../Common/Images/logo.svg" alt="logo" id="logo">
+</header>
+
+<div class="wrapper">
+    <main>
+        <form>
+            <p id="title">Sign-up</p>
+            <section id="inputs">
+                <section class="any_input">
+                    <label for="email_input">E-mail</label>
+                    <input placeholder="Enter your email..." id="email_input" type="email">
+                </section>
+                <section class="any_input">
+                    <label for="username_input">Username</label>
+                    <input placeholder="Enter your username" id="username_input" type="text">
+                </section>
+                <section class="any_input">
+                    <label for="password_input">Password</label>
+                    <input placeholder="Enter your password" id="password_input" type="password">
+                </section>
+                <section class="file_input">
+                    <label for="file_upload">
+                        <span id="tag">Profile picture</span>
+                        <span class="uploaded_file">Click to select file</span>
+                    </label>
+                    <input id="file_upload" type="file" hidden>
+                </section>
+            </section>
+            <section id="buttons">
+                <button class="main_button" type="submit">Submit</button>
+                <p><a href="">Log-in </a>to snapl<img alt="logo" src="../Common/Images/logo_small.svg">ad</p>
+            </section>
+        </form>
+    </main>
+</div>
+
+</body>
+</html>
