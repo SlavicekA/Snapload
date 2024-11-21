@@ -2,7 +2,8 @@
 
 header{
     display: grid;
-    grid-template-columns: 12.5% 75% 12.5%;
+    grid-template-columns: 12.5% 22.5% 30% 22.5% 12.5%;
+    grid-template-areas: "logo . search_form . user_card";
 }
 
 header > *{
@@ -13,29 +14,38 @@ header > *{
     justify-content: center;
 }
 
+
 #logo{
+    grid-area: logo;
+}
+
+#logo img{
     width: 60%;
 }
 
-#log_in{
-    width: 100%;
-    height: 100%;
+#user_card{
+    grid-area: user_card;
+}
+
+#log_in, #user_card p{
     align-content: center;
     text-align: center;
-    font-size: clamp(1.5rem, 2vw, 2.8rem);
+    font-size: 1.5rem;
     font-weight: 500;
     color: var(--primary-text-color);
     text-decoration-color: var(--primary-color);
     text-decoration-thickness: 3px;
 }
 
-
-
 #search_form{
+    grid-area: search_form;
+}
+
+#search_form form{
     margin: 0;
     display: flex;
     box-shadow: 0 9px 13.8px 0 #BABABA;
-    width: 35%;
+    width: 100%;
     height: 40%;
     background-color: var(--background-color-taskbar);
     border: solid var(--background-color-taskbar);
@@ -44,23 +54,86 @@ header > *{
     padding-left: 0.5vw;
 }
 
-#search_form > *{
+#search_form form > *{
     background-color: transparent;
     border: none;
 }
 
-#search_input{
-    flex: auto;
-}
-
-
 #search_button img{
-    width: clamp(1.5rem, 1vw, 2.8rem);
+    width: 1.5rem;
 }
 
 #search_input::placeholder,#search_input{
-    font-size: clamp(1.5rem, 2vw, 2.8rem);
+    font-size: 2rem;
+    color: var(--secondary-text-color);
 }
+
+#search_button{
+}
+
+#search_input{
+    flex: auto;
+    width: 80%;
+    color: var(--primary-text-color);
+}
+
+#actions{
+    display: flex;
+    grid-area: actions;
+    gap: 1vw;
+    padding-left: 2vw;
+}
+
+#actions a{
+    width: 100%;
+    align-content: center;
+    text-align: left;
+    font-size: 2rem;
+    font-weight: 500;
+    color: var(--primary-text-color);
+    text-decoration:none;
+}
+
+#actions a:hover{
+    text-decoration: underline var(--primary-text-color);
+}
+
+#upload_btn{
+    flex: 1;
+}
+#my_posts_btn{
+    flex: 2;
+}
+
+.logged_header{
+    display: grid;
+    grid-template-columns: 12.5% 22.5% 30% 22.5% 12.5%;
+    grid-template-areas: "logo . search_form actions user_card";
+}
+
+#user_card{
+    grid-area: user_card;
+    display: flex;
+    justify-content: center;
+    gap: 0.5vw;
+}
+#user_card > img{
+    height: 2.5rem;
+    border-radius: 100%;
+}
+#user_card p{
+    text-align: left;
+}
+
+#user_card a img{
+    height: 1.4rem;
+}
+
+#logout_button{
+    display: flex;
+    align-items: center;
+}
+
 
 main{
     background-color: var(--background-color-secondary);

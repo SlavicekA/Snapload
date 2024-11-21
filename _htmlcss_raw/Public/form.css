@@ -54,6 +54,7 @@ form{
 input{
     height: 5vh;
     border-radius: 0.5vw;
+    color: var(--primary-text-color);
 }
 
 label, input{
@@ -62,11 +63,11 @@ label, input{
 
 input::placeholder, label, input, #buttons p{
     font-weight: 500;
-    font-size: clamp(0.5rem, 1vw, 2.0rem);
+    font-size: 1.2rem;
 }
 
 #buttons{
-    padding-top: 2vh;
+    padding-top: 3vh;
     align-items: center;
 }
 

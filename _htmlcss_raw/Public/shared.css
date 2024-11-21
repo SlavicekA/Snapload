@@ -13,7 +13,6 @@
 
 body{
     font-family: var(--font);
-    font-weight: bold;
     margin: 0;
     height: 100%;
     background-image: url("../Public/Images/bg_pattern.svg");
@@ -39,4 +38,5 @@ input::placeholder,input{
     font-weight: 500;
     color: #8D8888;
 }
+
 

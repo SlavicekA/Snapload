@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="index.css">
 </head>
 <body>
-<header>
+<header class="logged_header">
     <div id="logo">
         <img src="../Public/Images/logo.svg" alt="logo">
     </div>
@@ -17,8 +17,14 @@
             <button id="search_button" type="submit"><img alt="search_icon" src="../Public/Images/search.svg"></button>
         </form>
     </div>
+    <div id="actions">
+        <a id="upload_btn" href="">Upload</a>
+        <a id="my_posts_btn" href="">My posts</a>
+    </div>
     <div id="user_card">
-        <a href="" id="log_in">Log-in</a>
+        <img alt="profile_picture" src="../Public/Images/profile_picture_placeholder.jpg">
+        <p>John_Wick</p>
+        <a id="logout_button" href=""><img alt="logout_icon" src="../Public/Images/logout_icon.svg"></a>
     </div>
 </header>
 <main>
