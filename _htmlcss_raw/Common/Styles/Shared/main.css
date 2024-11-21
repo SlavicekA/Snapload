@@ -1,8 +1,9 @@
-@import url("../Public/shared.css");
+@import url("shared.css");
+
 
 header{
     display: grid;
-    grid-template-columns: 12.5% 22.5% 30% 22.5% 12.5%;
+    grid-template-columns: 15% 20% 30% 20% 15%;
     grid-template-areas: "logo . search_form . user_card";
 }
 
@@ -30,7 +31,7 @@ header > *{
 #log_in, #user_card p{
     align-content: center;
     text-align: center;
-    font-size: 1.5rem;
+    font-size: 2rem;
     font-weight: 500;
     color: var(--primary-text-color);
     text-decoration-color: var(--primary-color);
@@ -77,38 +78,46 @@ header > *{
     color: var(--primary-text-color);
 }
 
-#actions{
+#actions_main,#actions_secondary{
     display: flex;
-    grid-area: actions;
-    gap: 1vw;
-    padding-left: 2vw;
+    gap: 2rem;
+    width: fit-content;
 }
 
-#actions a{
+#actions_main{
+    grid-area: actions_main;
+    padding-right: 2rem;
+    margin-left: auto;
+}
+
+#actions_main a{
     width: 100%;
     align-content: center;
-    text-align: left;
+    text-align: right;
     font-size: 2rem;
-    font-weight: 500;
     color: var(--primary-text-color);
     text-decoration:none;
+    white-space: nowrap;
 }
 
-#actions a:hover{
+#actions_main a:hover{
     text-decoration: underline var(--primary-text-color);
 }
 
-#upload_btn{
-    flex: 1;
+#actions_secondary{
+    grid-area: actions_secondary;
+    padding-left: 2rem;
+    margin-right: auto;
 }
-#my_posts_btn{
-    flex: 2;
+
+#actions_secondary a img{
+    width: 1.5rem;
 }
 
 .logged_header{
     display: grid;
-    grid-template-columns: 12.5% 22.5% 30% 22.5% 12.5%;
-    grid-template-areas: "logo . search_form actions user_card";
+    grid-template-columns: 15% 22.5% 25% 22.5% 15%;
+    grid-template-areas: "logo actions_main search_form actions_secondary user_card";
 }
 
 #user_card{
@@ -118,29 +127,20 @@ header > *{
     gap: 0.5vw;
 }
 #user_card > img{
-    height: 2.5rem;
+    height: 3rem;
     border-radius: 100%;
 }
 #user_card p{
     text-align: left;
 }
 
-#user_card a img{
-    height: 1.4rem;
-}
-
-#logout_button{
-    display: flex;
-    align-items: center;
-}
-
 
 main{
     background-color: var(--background-color-secondary);
-    width: 75vw;
-    height: 87vh;
-    flex: auto;
+    width: 70vw;
+    flex: 1;
     display: flex;
+    overflow-y: auto;
 }
 
 

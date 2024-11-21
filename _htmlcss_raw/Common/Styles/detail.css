@@ -1,5 +1,5 @@
-@import url("../Public/shared.css");
-@import url("../Public/main.css");
+@import url("Shared/shared.css");
+@import url("Shared/main.css");
 
 main{
     display: flex;

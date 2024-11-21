@@ -7,9 +7,13 @@
     <link rel="stylesheet" href="../Common/Styles/index.css">
 </head>
 <body>
-<header>
+<header class="logged_header">
     <div id="logo">
         <img src="../Common/Images/logo.svg" alt="logo">
+    </div>
+    <div id="actions_main">
+        <a id="upload_btn" href="">Upload</a>
+        <a id="my_posts_btn" href="">My posts</a>
     </div>
     <div id="search_form">
         <form>
@@ -17,11 +21,29 @@
             <button id="search_button" type="submit"><img alt="search_icon" src="../Common/Images/search.svg"></button>
         </form>
     </div>
+    <div id="actions_secondary">
+        <a id="edit_user__btn" href="" title="Edit user"><img alt="edit_user_icon" src="../Common/Images/edit_user_icon.svg"></a>
+        <a id="all_users_btn" href="" title="All users"><img alt="all_users_icon" src="../Common/Images/all_users_icon.svg"></a>
+        <a id="log_out_btn" href="" title="Log-out"><img alt="log_out_icon" src="../Common/Images/log_out_icon.svg"></a>
+    </div>
     <div id="user_card">
-        <a href="" id="log_in">Log-in</a>
+        <img alt="profile_picture" src="../Common/Images/profile_picture_placeholder.jpg">
+        <p>John_Wick</p>
     </div>
 </header>
 <main>
+    <div id="filter_grid">
+        <div class="filter_item">
+            <img alt="profile_picture" src="../Common/Images/profile_picture_placeholder.jpg">
+            <p>John Wick</p>
+            <button><img alt="close_icon" src="../Common/Images/close_icon.svg"></button>
+        </div>
+        <div class="filter_item">
+            <img alt="profile_picture" src="../Common/Images/profile_picture_placeholder.jpg">
+            <p>John Wick</p>
+            <button><img alt="close_icon" src="../Common/Images/close_icon.svg"></button>
+        </div>
+    </div>
     <div id="img_grid">
         <img src="../Common/Images/placeholder.jpg" alt="placeholder_img">
         <img src="../Common/Images/placeholder.jpg" alt="placeholder_img">
