@@ -54,7 +54,7 @@ class UserEditController {
             $picture_guid = null;
             $target_file = null;
             if ($profile_picture && $profile_picture["error"] == UPLOAD_ERR_OK) {
-                $fileType = getimagesize($profile_picture["tmp_name"])["mime"];
+                $fileType = str_replace("image/", "", getimagesize($profile_picture["tmp_name"])["mime"]);
 
                 if (!FormValidationService::checkFileExtension($fileType) and $profile_picture != null) {
                     header('Content-Type: application/json', true, 400);
@@ -68,14 +68,15 @@ class UserEditController {
 
                 $target_dir = "Public/Images/Uploads/";
                 $picture_guid = GuidService::generateGUID();
-                $target_file = $target_dir . $picture_guid . "." . str_replace("image/", "", $fileType);
-        
-                ImageService::resizeAndSaveImage($profile_picture, $target_file, 200, 200);
+                $target_file = $target_dir . $picture_guid . "." . $fileType;
+
+
+                ImageService::saveProfilePicture($profile_picture, $target_file, 200, 200);
             } else {
                 $picture_guid = "default_profile_picture.svg";
             }
 
-            $user = new User($id, $username, $picture_guid, $email, "user", $passwd_hash);
+            $user = new User($id, $username, $picture_guid . "." . $fileType, $email, "user", $passwd_hash);
 
             if(!$error){
                 if ($id != 0) {

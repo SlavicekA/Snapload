@@ -20,7 +20,7 @@ class FormValidationService{
     }
 
     public static function checkFileExtension($fileType){
-        if(in_array($fileType, ["image/jpg", "image/jpeg", "image/png"])){
+        if(in_array($fileType, ["jpg", "jpeg", "png"])){
             return true;
         }
     }
