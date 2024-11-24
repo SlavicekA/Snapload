@@ -6,7 +6,7 @@ class DbContext{
     const DBPASSWORD = "";
     private static $pdo;
 
-    public static function __construct(){
+    public function __construct(){
         self::$pdo = new PDO(self::DSN,self::DBUSERNAME,self::DBPASSWORD);
         self::$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
@@ -31,6 +31,24 @@ class DbContext{
         $placeholders = ":" . implode(", :", array_keys($data));
 
         $query = "INSERT INTO $table ($columns) VALUES ($placeholders)";
+
+        $stmt = self::$pdo->prepare($query);
+
+        foreach($data as $column => $value){
+            $stmt->bindValue(":" .  $column, $value);
+        }
+
+        $stmt->execute();
+    }
+
+    public static function update($table, $data = [], $conditions = []){
+        $set = "";
+        foreach($data as $column => $value){
+            $set .= $column . " = :" . $column . ", ";
+        }
+        $set = rtrim($set, ", ");
+
+        $query = "UPDATE $table SET $set WHERE " . implode(" AND ", $conditions);
 
         $stmt = self::$pdo->prepare($query);
 

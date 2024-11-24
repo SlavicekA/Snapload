@@ -13,19 +13,17 @@ CREATE TABLE `posts` (
   `guid` integer,
   `mini_guid` integer,
   `posted_date` datetime,
-  `description` longtext
+  `name` varchar(255)
 );
 
-CREATE TABLE `comments` (
+CREATE TABLE `likes_rel` (
   `id` integer PRIMARY KEY AUTO_INCREMENT,
   `user_id` integer,
-  `post_id` integer,
-  `posted_date` datetime,
-  `message` varchar(255)
+  `offer_id` integer
 );
 
 ALTER TABLE `posts` ADD FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 
-ALTER TABLE `comments` ADD FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+ALTER TABLE `likes_rel` ADD FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 
-ALTER TABLE `comments` ADD FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`);
+ALTER TABLE `likes_rel` ADD FOREIGN KEY (`offer_id`) REFERENCES `posts` (`id`);

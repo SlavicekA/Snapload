@@ -3,35 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <title>Snapload | Log-in</title>
-    <link rel="icon" type="image/x-icon" href="../Common/Images/logo_small.svg">
-    <link rel="stylesheet" href="../Common/Styles/Shared/form.css">
+    <link rel="icon" type="image/x-icon" href="../Public/Images/logo_small.svg">
+    <link rel="stylesheet" href="../Public/Styles/Shared/form.css">
 </head>
 <body>
 <header>
-    <img src="../Common/Images/logo.svg" alt="logo" id="logo">
+    <img src="../Public/Images/logo.svg" alt="logo" id="logo">
 </header>
 
 <div class="wrapper">
     <main>
-        <form>
+        <form action="/log_in" method="POST" enctype="multipart/form-data">
             <p id="title">Log-in</p>
             <section id="inputs">
                 <section class="any_input">
                     <label for="email_input">E-mail</label>
-                    <input placeholder="Enter your email..." id="email_input" type="email">
+                    <input placeholder="Enter your email..." id="email_input" type="email" name="email">
                 </section>
                 <section class="any_input">
                     <label for="password_input">Password</label>
-                    <input placeholder="Enter your password" id="password_input" type="password">
+                    <input placeholder="Enter your password" id="password_input" type="password" name="password">
                 </section>
             </section>
             <section id="buttons">
                 <button class="main_button" type="submit">Submit</button>
-                <p><a href="">Sign-up </a>for snapl<img alt="logo" src="../Common/Images/logo_small.svg">ad</p>
+                <p><a href="/user_edit">Sign-up </a>for snapl<img alt="logo" src="../Public/Images/logo_small.svg">ad</p>
             </section>
         </form>
     </main>
 </div>
-
 </body>
 </html>
