@@ -5,38 +5,67 @@ namespace Common\Services;
 class ImageService {
     public static function saveProfilePicture($file, $targetFile, $targetWidth, $targetHeight){
         $fileTmpName = $file['tmp_name'];
-        $fileType = getimagesize($fileTmpName)['mime'];
+        $fileType = str_replace("image/", "",  getimagesize($fileTmpName)['mime']);
 
         list($width, $height) = getimagesize($fileTmpName);
 
-        $imageResource = self::prepareImage($fileType, $fileTmpName, $width, $height);
+        $croppedImage = self::cropImage(self::prepareImage($fileType, $fileTmpName), $width, $height);
 
         $newImage = imagecreatetruecolor($targetWidth, $targetHeight);
 
         $squareSize = min($width, $height);
         imagecopyresampled(
-            $newImage, $imageResource,
+            $newImage, $croppedImage,
             0, 0,
             0, 0,
             $targetWidth, $targetHeight,
             $squareSize, $squareSize
         );
 
-        self::saveAnyPicture($fileType, $newImage, $targetFile);
+        self::saveAnyPicture($fileType, $newImage, $targetFile . "." . $fileType);
 
-        imagedestroy($imageResource);
+        imagedestroy($croppedImage);
         imagedestroy($newImage);
     }
 
-    private static function prepareImage($fileType, $fileTmpName, $width, $height){
-        
+    public static function savePostPicture($file, $targetFile){
+        $fileTmpName = $file['tmp_name'];
+        $fileType = str_replace("image/", "",  getimagesize($fileTmpName)['mime']);
 
-        if ($fileType == "image/png") {
+        list($width, $height) = getimagesize($fileTmpName);
+
+        $imageResource = self::prepareImage($fileType, $fileTmpName);
+        $croppedImage = self::cropImage($imageResource, $width, $height);
+
+        $miniImage = imagecreatetruecolor(1000, 1000);
+
+        $squareSize = min($width, $height);
+        imagecopyresampled(
+            $miniImage, $croppedImage,
+            0, 0,
+            0, 0,
+            1000, 1000,
+            $squareSize, $squareSize
+        );
+
+        self::saveAnyPicture($fileType, $imageResource, $targetFile . "." . $fileType);
+        self::saveAnyPicture($fileType, $miniImage, $targetFile . "_MINI" . "." . $fileType);
+
+        imagedestroy($imageResource);
+        imagedestroy($miniImage);
+    }
+
+    private static function prepareImage($fileType, $fileTmpName){
+        if ($fileType == "png") {
             $imageResource = imagecreatefrompng($fileTmpName);
-        } else if ($fileType == "image/jpg" || $fileType == "image/jpeg" ){
+        } else if ($fileType == "jpg" || $fileType == "jpeg" ){
             $imageResource = imagecreatefromjpeg($fileTmpName);
         }
+        return $imageResource;
+    }
 
+
+    private static function cropImage($imageResource, $width, $height){
 
         $squareSize = min($width, $height);
 
@@ -57,9 +86,9 @@ class ImageService {
 
 
     private static function saveAnyPicture($fileType, $newImage, $targetFile){
-        if($fileType == "image/png"){
+        if($fileType == "png"){
             imagepng($newImage, $targetFile, 90);
-        } else if($fileType == "image/jpg" || $fileType == "image/jpeg"){
+        } else if($fileType == "jpg" || $fileType == "jpeg"){
             imagejpeg($newImage, $targetFile, 90);
         }
     }

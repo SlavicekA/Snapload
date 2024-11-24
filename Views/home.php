@@ -19,7 +19,7 @@
     </div>
     <?php if ($loggedIn): ?>
         <div id="actions_main">
-            <a id="upload_btn" href="">Upload</a>
+            <a id="upload_btn" href="/upload">Upload</a>
             <a id="my_posts_btn" href="">My posts</a>
         </div>
     <?php endif; ?>

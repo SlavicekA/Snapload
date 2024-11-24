@@ -4,7 +4,7 @@ namespace Repositories;
 use \DbContext;
 use \Models\User;
 
-class userRepo{
+class UserRepo{
     private $context;
 
     public function __construct(){

@@ -31,6 +31,10 @@ $router->addRoute("POST", "user_edit", "UserEditController", "handleRequest");
 $router->addRoute("GET", "log_in", "LogInController", "index");
 $router->addRoute("POST", "log_in", "LogInController", "handleRequest");
 
+$router->addRoute("GET", "upload", "UploadController", "index");
+$router->addRoute("POST", "upload", "UploadController", "handleRequest");
+
+
 
 $view = str_replace("Snapload/","", $_SERVER["REQUEST_URI"]);
 $view = trim($view, "/");

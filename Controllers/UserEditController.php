@@ -68,7 +68,7 @@ class UserEditController {
 
                 $target_dir = "Public/Images/Uploads/";
                 $picture_guid = GuidService::generateGUID();
-                $target_file = $target_dir . $picture_guid . "." . $fileType;
+                $target_file = $target_dir . $picture_guid;
 
 
                 ImageService::saveProfilePicture($profile_picture, $target_file, 200, 200);

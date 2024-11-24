@@ -13,19 +13,21 @@
 
 <div class="wrapper">
     <main>
-        <form>
+        <form action="/upload" method="POST" enctype="multipart/form-data">
+            <input type="hidden" name="id" value="<?php echo htmlspecialchars($post->getId(),ENT_QUOTES); ?>">
+            <input type="hidden" name="user_id" value="<?php echo htmlspecialchars($post->getUserId(),ENT_QUOTES); ?>">
             <p id="title">Upload</p>
             <section id="inputs">
                 <section class="any_input">
                     <label for="post_name_input">Post name</label>
-                    <input placeholder="Enter name of the post" id="post_name_input" type="text">
+                    <input name="name" placeholder="Enter name of the post" id="post_name_input" type="text">
                 </section>
                 <section class="file_input">
                     <label for="file_upload">
                         <span id="tag">Picture</span>
                         <span class="uploaded_file">Click to select file</span>
                     </label>
-                    <input id="file_upload" type="file" hidden>
+                    <input name="picture" id="file_upload" type="file" hidden>
                 </section>
             </section>
             <section id="buttons">
