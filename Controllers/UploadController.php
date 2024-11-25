@@ -66,7 +66,7 @@ class UploadController {
                 exit;
             }
 
-            $post = new Post($id, $user_id, $picture_guid . "." . $fileType, $picture_guid . "_MINI" . "." . $fileType, date('Y-m-d H:i:s'), $name);
+            $post = new Post($id, $user_id, $picture_guid, $picture_guid . "_MINI" , date('Y-m-d H:i:s'), $name);
 
             if(!$error){
                 if ($id != 0) {

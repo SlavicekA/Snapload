@@ -38,7 +38,7 @@
     <?php endif; ?>
     <div id="user_card">
         <?php if ($loggedIn): ?>
-            <img alt="profile_picture" src="../Public/Images/Uploads/<?php echo($_SESSION["avatar_guid"]) ?>">
+            <img alt="profile_picture" src="../Public/Images/Uploads/<?php echo($_SESSION["avatar_guid"] . ".webp") ?>">
             <p><?php echo($_SESSION["username"]) ?></p>
         <?php else: ?>
             <a href="/log_in" id="log_in">Log-in</a>

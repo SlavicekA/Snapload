@@ -4,58 +4,56 @@ namespace Common\Services;
 
 class ImageService {
     public static function saveProfilePicture($file, $targetFile, $targetWidth, $targetHeight){
-        $fileTmpName = $file['tmp_name'];
-        $fileType = str_replace("image/", "",  getimagesize($fileTmpName)['mime']);
 
-        list($width, $height) = getimagesize($fileTmpName);
+        $croppedImage = self::cropImage(self::prepareImage($file), $file);
 
-        $croppedImage = self::cropImage(self::prepareImage($fileType, $fileTmpName), $width, $height);
+        $newImage = self::resizeImage(200, 200, $croppedImage, $file);
 
-        $newImage = imagecreatetruecolor($targetWidth, $targetHeight);
-
-        $squareSize = min($width, $height);
-        imagecopyresampled(
-            $newImage, $croppedImage,
-            0, 0,
-            0, 0,
-            $targetWidth, $targetHeight,
-            $squareSize, $squareSize
-        );
-
-        self::saveAnyPicture($fileType, $newImage, $targetFile . "." . $fileType);
+        self::saveAnyPicture($newImage, $targetFile);
 
         imagedestroy($croppedImage);
         imagedestroy($newImage);
     }
 
     public static function savePostPicture($file, $targetFile){
-        $fileTmpName = $file['tmp_name'];
-        $fileType = str_replace("image/", "",  getimagesize($fileTmpName)['mime']);
 
-        list($width, $height) = getimagesize($fileTmpName);
+        $imageResource = self::prepareImage($file);
+        $croppedImage = self::cropImage($imageResource, $file);
 
-        $imageResource = self::prepareImage($fileType, $fileTmpName);
-        $croppedImage = self::cropImage($imageResource, $width, $height);
+        $miniImage = self::resizeImage(1000, 1000, $croppedImage, $file);
 
-        $miniImage = imagecreatetruecolor(1000, 1000);
-
-        $squareSize = min($width, $height);
-        imagecopyresampled(
-            $miniImage, $croppedImage,
-            0, 0,
-            0, 0,
-            1000, 1000,
-            $squareSize, $squareSize
-        );
-
-        self::saveAnyPicture($fileType, $imageResource, $targetFile . "." . $fileType);
-        self::saveAnyPicture($fileType, $miniImage, $targetFile . "_MINI" . "." . $fileType);
+        self::saveAnyPicture($imageResource, $targetFile);
+        self::saveAnyPicture($miniImage, $targetFile . "_MINI");
 
         imagedestroy($imageResource);
         imagedestroy($miniImage);
     }
 
-    private static function prepareImage($fileType, $fileTmpName){
+    #resize square image (non-square images will be distorted)
+    private static function resizeImage($targetWidth, $targetHeight, $imageResource, $file){
+        $fileTmpName = $file['tmp_name'];
+
+        list($width, $height) = getimagesize($fileTmpName);
+        $currentDimension = min($width, $height);
+
+        $resizedImage = imagecreatetruecolor($targetWidth, $targetHeight);
+        imagecopyresampled(
+            $resizedImage, $imageResource,
+            0, 0,
+            0, 0,
+            $targetWidth, $targetHeight,
+            $currentDimension, $currentDimension
+        );
+
+        return $resizedImage;
+    }
+
+
+    #prepare image as a resource so that i can work with it
+    private static function prepareImage($file){
+        $fileTmpName = $file['tmp_name'];
+        $fileType = str_replace("image/", "",  getimagesize($fileTmpName)['mime']);
+
         if ($fileType == "png") {
             $imageResource = imagecreatefrompng($fileTmpName);
         } else if ($fileType == "jpg" || $fileType == "jpeg" ){
@@ -64,9 +62,11 @@ class ImageService {
         return $imageResource;
     }
 
+    #crop the image to square (shorter dimension stays the same)
+    private static function cropImage($imageResource, $file){
+        $fileTmpName = $file['tmp_name'];
 
-    private static function cropImage($imageResource, $width, $height){
-
+        list($width, $height) = getimagesize($fileTmpName);
         $squareSize = min($width, $height);
 
         $xOffset = ($width > $height) ? (($width - $height) / 2) : 0;
@@ -84,12 +84,8 @@ class ImageService {
         return ($croppedImage);
     }
 
-
-    private static function saveAnyPicture($fileType, $newImage, $targetFile){
-        if($fileType == "png"){
-            imagepng($newImage, $targetFile, 90);
-        } else if($fileType == "jpg" || $fileType == "jpeg"){
-            imagejpeg($newImage, $targetFile, 90);
-        }
+    #Save as webp cause its cool and i dont have to save the filetype to db
+    private static function saveAnyPicture($newImage, $targetFile){
+        imagewebp($newImage, $targetFile . ".webp", 90);
     }
 }

@@ -76,7 +76,7 @@ class UserEditController {
                 $picture_guid = "default_profile_picture.svg";
             }
 
-            $user = new User($id, $username, $picture_guid . "." . $fileType, $email, "user", $passwd_hash);
+            $user = new User($id, $username, $picture_guid, $email, "user", $passwd_hash);
 
             if(!$error){
                 if ($id != 0) {
